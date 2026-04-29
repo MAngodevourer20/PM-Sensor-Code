@@ -56,7 +56,7 @@ std::string outputFormat = "PM1 (STD) \t= % 6d µg/µ3 \n"
                            "PN10000 \t= % 6d #\\0.1 l \n"
                            "\n";
 
-void IRAM_ATTR handlebutpress() {
+void IRAM_ATTR handleipress() {
   butstate=1;
 }
 
@@ -70,7 +70,7 @@ void setup() {
   pms.setToPassiveReporting();
 
   pinMode(butpin, INPUT);
-  attachInterrupt(digitalPinToInterrupt(butpin), handlebutpress, FALLING); // Trigger on falling edge
+  attachInterrupt(digitalPinToInterrupt(butpin), handleipress, FALLING); // Trigger on falling edge
 
   if (!bme.begin(0x76, &Wire)) {
     Serial.println(F("Could not find a valid BME680 sensor, check wiring!"));
